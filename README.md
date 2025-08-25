@@ -39,3 +39,12 @@ SMTP_PASS=
 ```bash
 docker compose up --build
 ```
+- Open the apps </br>
+Frontend: http://localhost:5173   </br>
+API health: http://localhost:4000/api/health   </br>
+Postgres: http://localhost:5432 (user: actions, pass: actions, db: actions).
+
+- To stop:
+```bash
+docker compose down
+```
