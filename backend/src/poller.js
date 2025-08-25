@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/rest";
 import { upsertRepository, upsertWorkflowRuns, isAlertSent, markAlertSent } from "./db.js";
-import { sendSlackAlert, sendEmailAlert } from "./alerts.js";
+import { sendSlackAlert, sendEmailAlert } from "./alert.js";
 
 const token = process.env.GITHUB_TOKEN;
 const reposEnv = process.env.GITHUB_REPOS || "";
