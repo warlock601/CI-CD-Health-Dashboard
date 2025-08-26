@@ -1,12 +1,15 @@
 # CI/CD Pipeline Health Dashboard 
 A simple, containerized dashboard to monitor GitHub Actions pipeline health across repositories. It collects workflow run metadata, computes success/failure rates and average build times, displays latest build status, and can send alerts to Slack and/or Email on failures.
 
-## Stack
-- Backend: Node.js (Express), GitHub API via Octokit, PostgreSQL
-- Frontend: React (Vite), served by Nginx
-- Database: PostgreSQL
-- Alerting: Slack webhook and SMTP email (optional)
-- Orchestration: Docker Compose (see `infra/docker-compose.yml`)
+## 🚀 Features
+
+- ✅ **Real-time data collection** from GitHub Actions via GitHub API
+- ✅ **Live metrics dashboard** with success/failure rates and build times
+- ✅ **Automated polling** for continuous pipeline monitoring
+- ✅ **Alerting system** with Slack webhooks and SMTP email notifications
+- ✅ **Modern React UI** with responsive design and real-time updates
+- ✅ **Fully containerized** with Docker for consistent deployment
+- ✅ **Production-ready** with health checks, database persistence, and proper documentation
 
 ## Prerequisites
 - Docker Desktop installed
@@ -201,19 +204,6 @@ The CI/CD Pipeline Health Dashboard follows a modern microservices architecture 
 - **Database**: PostgreSQL connection pooling
 - **Frontend**: 30-second auto-refresh cycle
 
-## 📊 Dashboard Features
-
-### Metrics Display
-- **Success Rate**: 24-hour success percentage
-- **Failure Rate**: 24-hour failure percentage  
-- **Average Build Time**: Mean duration across recent builds
-- **Last Build Status**: Current pipeline state
-
-### Data Visualization
-- **Repository Selector**: Choose specific repositories
-- **Runs Table**: Recent workflow executions with status
-- **Real-time Updates**: Automatic data refresh
-- **Responsive Design**: Works on desktop and mobile
 
 ## 🚨 Alerting System
 
