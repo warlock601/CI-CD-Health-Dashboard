@@ -98,56 +98,6 @@ The CI/CD Pipeline Health Dashboard follows a modern microservices architecture 
                                            └─────────────────┘
 ```
 
-### Detailed System Architecture
-
-#### 1. Data Flow Architecture
-
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   GitHub    │───▶│   Backend   │───▶│ PostgreSQL │───▶│  Frontend   │
-│   Actions   │    │   Poller    │    │  Database  │    │   Display   │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-       │                   │                   │                   │
-       │                   ▼                   ▼                   ▼
-       │            ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-       │            │   Metrics   │    │   Data      │    │   Real-time │
-       │            │ Calculator  │    │ Persistence │    │   Updates   │
-       └───────────▶└─────────────┘    └─────────────┘    └─────────────┘
-                            │                   │                   │
-                            ▼                   ▼                   ▼
-                   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-                   │   Alerting  │    │   Health    │    │   User      │
-                   │   Engine    │    │   Checks    │    │   Interface │
-                   └─────────────┘    └─────────────┘    └─────────────┘
-```
-
-#### 2. Container Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           Docker Compose Stack                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   PostgreSQL    │    │   Node.js API   │    │   React App     │
-│   Container     │    │   Container     │    │   Container     │
-│                 │    │                 │    │                 │
-│ • Port: 5432    │    │ • Port: 4000    │    │ • Port: 5173    │
-│ • Volume: db    │    │ • Env: GitHub   │    │ • Build: Vite   │
-│ • User: actions │    │   Token, Repos  │    │ • Serve: Nginx  │
-│ • DB: actions   │    │ • Depends: DB   │    │ • Depends: API  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         ▲                       ▲                       ▲
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                    ┌─────────────▼─────────────┐
-                    │      Shared Network       │
-                    │   (ci-cd-dashboard-net)  │
-                    └───────────────────────────┘
-```
-
-
 ### Component Details
 
 #### Backend (Node.js + Express)
