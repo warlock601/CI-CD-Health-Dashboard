@@ -30,17 +30,17 @@ output "ec2_public_ip" {
 
 output "alb_dns_name" {
   description = "DNS name of the Application Load Balancer"
-  value       = module.alb.dns_name
+  value       = module.alb.alb_dns_name
 }
 
 output "alb_zone_id" {
   description = "Zone ID of the Application Load Balancer"
-  value       = module.alb.zone_id
+  value       = module.alb.alb_zone_id
 }
 
 output "application_url" {
   description = "Public URL of the application"
-  value       = "http://${module.alb.dns_name}"
+  value       = "http://${module.alb.alb_dns_name}"
 }
 
 output "ssh_command" {
