@@ -26,6 +26,7 @@ in a modularized way like ec2, vpc (include subnets etc inside this only), rds e
 
 **Prompt 2**:
 ```
-For the given IaC also generate an S3 bucket and a Dynamo-DB table and then create a remote-backend.tf file containing the remote backend configuration with state-locking using this Dynamo-DB table.
+For the given IaC also generate an S3 bucket and a Dynamo-DB table and then create a remote-backend.tf file containing the remote
+backend configuration with state-locking using this Dynamo-DB table.
 
 ```
