@@ -1,4 +1,4 @@
-# CI/CD Health Dashboard - AWS Deployment
+# CI/CD Health Dashboard - IaC Deployment using Terraform
 
 This directory contains the complete Terraform infrastructure code for deploying the CI/CD Health Dashboard to AWS.
 
