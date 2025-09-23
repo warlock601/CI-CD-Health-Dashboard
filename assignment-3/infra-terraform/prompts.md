@@ -19,7 +19,6 @@ backend configuration with state-locking using this Dynamo-DB table.
 
 **Prompt 3**:
 ```
-For the given IaC also generate an S3 bucket and a Dynamo-DB table and then create a remote-backend.tf file containing the remote
-backend configuration with state-locking using this Dynamo-DB table.
+How can we also use Terraform provisioners like remote-exec to dockerize this app inside EC2 instead of using any EC2 user-data script?
 
 ```
