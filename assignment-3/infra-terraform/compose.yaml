@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  api:
+    build: 
+      context: ../backend
+      dockerfile: Dockerfile
+    image: cicd-dashboard-api:latest
+    environment:
+      DATABASE_URL: postgres://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_ENDPOINT}:5432/${DATABASE_NAME}
+      PORT: 4000
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      GITHUB_REPOS: ${GITHUB_REPOS}
+      POLL_INTERVAL_SECONDS: ${POLL_INTERVAL_SECONDS:-60}
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL}
+      ALERT_EMAIL_TO: ${ALERT_EMAIL_TO}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_SECURE: ${SMTP_SECURE}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN}
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - app-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - app-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  web:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    image: cicd-dashboard-web:latest
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - app-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  db-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
