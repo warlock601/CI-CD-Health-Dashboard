@@ -8,23 +8,16 @@ in a modularized way like ec2, vpc (include subnets etc inside this only), rds e
 
 ```
 
-**Analysis Performed**:
-1. Examined the existing codebase structure
-2. Identified application dependencies (PostgreSQL, Node.js, React)
-3. Analyzed Docker configuration
-4. Understood the application architecture and requirements
-
-**Key Findings**:
-- Backend uses PostgreSQL database with connection pooling
-- Frontend is a React SPA built with Vite
-- Application requires GitHub API access for CI/CD monitoring
-- Docker Compose setup for local development
-- Environment variables for configuration
-
----
-
 
 **Prompt 2**:
+```
+For the given IaC also generate an S3 bucket and a Dynamo-DB table and then create a remote-backend.tf file containing the remote
+backend configuration with state-locking using this Dynamo-DB table.
+
+```
+
+
+**Prompt 3**:
 ```
 For the given IaC also generate an S3 bucket and a Dynamo-DB table and then create a remote-backend.tf file containing the remote
 backend configuration with state-locking using this Dynamo-DB table.
